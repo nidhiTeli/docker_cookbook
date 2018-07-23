@@ -1,7 +1,5 @@
 # To learn more about Custom Resources, see https://docs.chef.io/custom_resources.html
-
-action :create
-
+resource_name :docker_image
 property :tag, String, name_property: true
 
 property :dockerfile, String
