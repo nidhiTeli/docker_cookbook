@@ -1,7 +1,11 @@
 # To learn more about Custom Resources, see https://docs.chef.io/custom_resources.html
+
 action :create
+
 property :tag, String, name_property: true
+
 property :dockerfile, String
+
 action :create do
   package 'docker'
   
@@ -11,14 +15,14 @@ action :create do
   
   directory '/root/python'
   
-  template #{dockerfile} do
+  template '/root/python/Dockerfile' do
     source 'Dockerfile.erb'
   end
   
-  bash 'create python image using docker file' do
+  bash 'create python image' do
     cwd '/root/python/'
     code <<-EOH
     docker build -t #{tag} .
     EOH
-  end 
+  end
 end
